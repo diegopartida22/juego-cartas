@@ -18,8 +18,8 @@ public class GUIManager : MonoBehaviour
     public void EscucharBoton()
     {
         print("Boton presionado");
-        //SceneManager.LoadScene("ScriptableObject");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("ScriptableObject");
+        //SceneManager.LoadScene(2);
 
     }
 
