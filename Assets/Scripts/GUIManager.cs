@@ -5,29 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour
 {
-    // RECOMENDACIÓN:
-    // Con cualquier manager centralizado hacer singleton
+    [SerializeField]
+    private CartaSO[] _cartas;
 
     void Start()
     {
-        // si necesitamos um objeto que permanezca entre escenas
         DontDestroyOnLoad(gameObject);
+        _cartas = Resources.LoadAll<CartaSO>("ScriptableObjects");
     }
 
-    // Escuchar boton
     public void EscucharBoton()
     {
         print("Boton presionado");
-        SceneManager.LoadScene("ScriptableObject");
-        //SceneManager.LoadScene(2);
 
-    }
+        List<CartaSO> cartasAleatorias = new List<CartaSO>();
+        while (cartasAleatorias.Count < 5)
+        {
+            CartaSO carta = _cartas[Random.Range(0, _cartas.Length)];
+            if (!cartasAleatorias.Contains(carta))
+            {
+                cartasAleatorias.Add(carta);
+            }
+        }
 
-    // Escuchar slider
-    public void EscucharSlider(float valor)
-    {
-        print(string.Format("Slider: {0}", valor)); 
-
+        CartaLoader[] loaders = FindObjectsOfType<CartaLoader>();
+        for (int i = 0; i < loaders.Length; i++)
+        {
+            loaders[i].SetDatosCarta(cartasAleatorias[i]);
+        }
     }
 
     public void Salir()

@@ -8,9 +8,6 @@ public class CartaLoader : MonoBehaviour
 {
 
     [SerializeField]
-    private CartaSO _datos;
-
-    [SerializeField]
     private TMP_Text _nombre;
 
     [SerializeField]
@@ -19,18 +16,11 @@ public class CartaLoader : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetDatosCarta(CartaSO datosCarta)
     {
-        Assert.IsNotNull(_datos, "Los datos de la carta no pueden ser nulos");
-        _nombre.text = _datos.nombre;
-        _fuerza.text = _datos.fuerza;
-        _spriteRenderer.sprite = _datos.sprite;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Assert.IsNotNull(datosCarta, "Los datos de la carta no pueden ser nulos");
+        _nombre.text = datosCarta.nombre;
+        _fuerza.text = datosCarta.fuerza;
+        _spriteRenderer.sprite = datosCarta.sprite;
     }
 }
